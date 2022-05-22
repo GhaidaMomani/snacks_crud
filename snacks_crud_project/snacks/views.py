@@ -7,7 +7,7 @@ from django.views.generic import ( ListView,
                                    View
                                     )
 
-from django.views import render 
+from django.shortcuts import render
 from .models import Snack
 
 
@@ -35,42 +35,42 @@ class SnacksCreateView(CreateView):
 class SnacksUpdateView(UpdateView):
     template_name = "snack_update.html"
     model = Snack
-    fields = ["name", "rating"]
+    fields = ["title", "description"]
 
-class ThingsDeleteView(DeleteView):
+class SnacksDeleteView(DeleteView):
     template_name = "snack_delete.html"
     model = Snack
     success_url ='/'
 
 
-class MyCustomView(View):
+# class MyCustomView(View):
 
-    queryset= Snack.objects.all
-    def get(self, request, *args, **kwargs):
-        pass
+#     queryset= Snack.objects.all
+#     def get(self, request, *args, **kwargs):
+#         pass
 
-    def post(self, request, *args, **kwargs):
-        data = request.data
+#     def post(self, request, *args, **kwargs):
+#         data = request.data
 
-        my_snack={
-            "title" : data["title"],
-            "purchaser" : data["purchaser"],
+#         my_snack={
+#             "title" : data["title"],
+#             "purchaser" : data["purchaser"],
 
       
 
-        }
+#         }
 
-        my_object = Snack.objects.create(**my_snack)
-        my_object.save()
+#         my_object = Snack.objects.create(**my_snack)
+#         my_object.save()
 
-        return render(request, "home.html", {})
-
-
+#         return render(request, "home.html", {})
 
 
-    def put(self, request, *args, **kwargs):
-        pass
 
 
-    def delete(self, request, *args, **kwargs):
-        pass
+#     def put(self, request, *args, **kwargs):
+#         pass
+
+
+#     def delete(self, request, *args, **kwargs):
+#         pass
